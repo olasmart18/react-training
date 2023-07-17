@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import User from "../model/user.js";
 
+//register user
 export const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
@@ -34,6 +35,7 @@ export const register = async (req, res) => {
   }
 };
 
+// login user
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -46,12 +48,9 @@ export const login = async (req, res) => {
       // user is find, then check password matches
       const pwdMatch = bcrypt.compareSync(password, user.password);
       if (!pwdMatch) return res.status(404).json({
-        message:' username or password is incorrect'
+        message: 'username or password is incorrect'
       })
-      res.json({
-        message: 'successful',
-        data: `welcome, you logged in as ${user.email}`
-      })
+     return res.redirect('/user/success')
     })
   } catch (err) {
     res.status(500).json({
