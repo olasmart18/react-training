@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import { Schema, model} from mongoose;
+import { Schema, model} from 'mongoose';
 // import Joi from "joi";
 
 const userSchema = new Schema({
@@ -20,9 +19,8 @@ const userSchema = new Schema({
         required: true
     },
     profileImage: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Image',
-        required: true
+            data: Buffer,
+            contentType: String
     },
     createdAt: {
         type: Date,
